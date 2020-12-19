@@ -14,18 +14,18 @@
             <hr>
               <b-row cols="1" cols-md="2" no-gutters>
               <b-col>
-            <div class="column-two__left">
-              <p> Episodes<span class="value"> {{ title.episodes }} </span> </p>
-              <p> Start <span class="value">{{ title.aired.from | substring }}</span></p> 
-              <p> Status <span class="value">{{ title.status }}</span> </p>
-            </div>
-              </b-col>
-              <b-col>
-            <div class="column-two__right">
-              <p> Format <span class="value">{{ title.type }}</span> </p>
-              <p> End <span class="value">{{ title.aired.to | substring}}</span> </p>
-              <p> Score <span class="value"> {{ title.score }}</span></p>
-            </div>
+                <div class="column-two__left">
+                  <p> Episodes<span class="value"> {{ title.episodes }} </span> </p>
+                  <p> Start <span class="value">{{ title.aired.from | substring }}</span></p> 
+                  <p> Status <span class="value">{{ title.status }}</span> </p>
+                </div>
+                  </b-col>
+                  <b-col>
+                <div class="column-two__right">
+                  <p> Format <span class="value">{{ title.type }}</span> </p>
+                  <p> End <span class="value">{{ title.aired.to | substring}}</span> </p>
+                  <p> Score <span class="value"> {{ title.score }}</span></p>
+                </div>
               </b-col>
               </b-row>
             <hr>
@@ -72,6 +72,31 @@ export default {
 
 <style lang="scss">
 $md-size: 767px;
+$grid-color:  rgba(28, 162, 182, 0.192);
+
+@mixin grid-style($order) {
+  @if $order == odd {
+    &:nth-child(odd) {
+      background: $grid-color;
+      //If I used the 'padding' property I would overwrite the one being
+      //used for the '&__left, &__right' selector.
+      padding-top: 1rem;
+      padding-bottom: 1rem; 
+    } 
+  }
+
+  @if $order == even {
+    &:nth-child(even) {
+      background: $grid-color;
+      padding-top: 1rem;
+      padding-bottom: 1rem; 
+    } 
+  }
+}
+
+*{
+  color: rgb(16, 120, 136);
+}
 
 .container {
   margin: 3rem auto;
@@ -79,11 +104,6 @@ $md-size: 767px;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title-card {
-  background: rgba(28, 162, 182, 0.192);
-  border-radius: 25px;
 }
 
 img {
@@ -100,32 +120,36 @@ img {
 }
 
 .column-two {
+  font-size: 15px;
   align-self: center;
 
   &__left {
-    border-right: 1px solid rgba(28, 162, 182, 0.350);
+    @media screen and (min-width: $md-size+1) {
+      border-right: 1px solid rgba(28, 162, 182, 0.350);
+      }
+      
+      p {
+        @include grid-style(odd);
+      }
   }
 
   &__right {
-    &:nth-child(even) {
-      background: rgba(28, 162, 182, 0.192);
+    p {
+      @media screen and (min-width: $md-size+1) {
+        @include grid-style(odd);
+      }
+
+      @media screen and (max-width: $md-size) {
+        @include grid-style(even);
+      }
     }
   }
-
+  
   &__left, &__right {
     text-align: left;
     p {
-
-      // @include grid-style-one;
-      &:nth-child(odd) {
-      background: rgba(28, 162, 182, 0.192);
-      padding: 1rem 0 1rem 5px;
-      }
-      //Could be better way of implementing this but for now this works.
-      &:nth-child(even) {
-        padding-left: 5px;
-      }
-    } 
+      padding-left: 5px;
+    }
   }
 }
 

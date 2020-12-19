@@ -45,7 +45,8 @@ export default {
       checked: false,
       navLinks: [
         {id: 1, urlPath: '/', name: 'Home'},
-        {id: 2, urlPath: '/about', name: 'About'}
+        {id: 2, urlPath: '/results', name: 'Results(dev)'},
+        {id: 3, urlPath: '/title', name: 'Title(dev)'}
       ]
     }
   }
