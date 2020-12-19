@@ -1,0 +1,21 @@
+@mixin grid-style-one {
+  &:nth-child(odd) {
+    background: rgba(28, 162, 182, 0.192);
+    padding: 1rem 0 1rem 5px;
+    }
+    //Could be better way of implementing this but for now this works.
+    &:nth-child(even) {
+      padding-left: 5px;
+    }
+}
+
+@mixin grid-style-two {
+  &:nth-child(even) {
+    background: rgba(28, 162, 182, 0.192);
+    padding: 1rem 0 1rem 5px;
+    }
+    //Could be better way of implementing this but for now this works.
+    &:nth-child(odd) {
+      padding-left: 5px;
+    }
+}
