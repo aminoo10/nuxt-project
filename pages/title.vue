@@ -9,21 +9,27 @@
           </b-col>
           <b-col class="column-two">
             <h1> {{title.title}} </h1>
+            <div class="mb-2" v-if="manga">
+              <span  v-for="author of authors" :key="author.mal_id"> {{author.name}}. </span>
+            </div>
             <h5> <i>{{title.title_japanese}}</i> </h5>
             <h6> {{ title.rating }} </h6>
             <hr>
-              <b-row cols="1" cols-md="2" no-gutters>
+            <b-row cols="1" cols-md="2" no-gutters>
               <b-col>
                 <div class="column-two__left">
-                  <p> Episodes<span class="value"> {{ title.episodes }} </span> </p>
-                  <p> Start <span class="value">{{ title.aired.from | substring }}</span></p> 
+                  <p v-if="manga"> Chapters<span class="value"> {{ title.chapters }} </span> </p>
+                  <p v-else> Episodes<span class="value"> {{ title.episodes }} </span> </p>
+                  <p v-if="manga"> Start <span class="value">{{title.published.from | substring }}</span></p> 
+                  <p v-else> Start <span class="value">{{ title.aired.from | substring }}</span></p> 
                   <p> Status <span class="value">{{ title.status }}</span> </p>
                 </div>
                   </b-col>
                   <b-col>
                 <div class="column-two__right">
                   <p> Format <span class="value">{{ title.type }}</span> </p>
-                  <p> End <span class="value">{{ title.aired.to | substring}}</span> </p>
+                  <p v-if="manga"> End <span class="value">{{ title.published.to | substring}}</span> </p>
+                  <p v-else> End <span class="value">{{ title.aired.to | substring}}</span> </p>
                   <p> Score <span class="value"> {{ title.score }}</span></p>
                 </div>
               </b-col>
@@ -32,6 +38,9 @@
             <div class="synopsis">
               <h5>Synoposis</h5>
               <p class="mt-3"> {{title.synopsis}} </p>
+            </div>
+            <div class="genres mt-5">
+              <p v-for="genre of this.title.genres" :key="genre.mal_id"> {{genre.name}}</p>
             </div>
           </b-col>
         </b-row>
@@ -47,18 +56,31 @@ export default {
       loading: true,
       title: null,
       errored: false,
-      query: 'kinnikuman'
+      mangaID: 2845,
+      animeID: 3272,
+      // manga: this.$route.query.manga,
     }
   },
   mounted() {
     axios
-    .get(`https://api.jikan.moe/v3/anime/3272`)
+    .get(`https://api.jikan.moe/v3/${this.searchType}/${this.$route.query.id}`)
     .then(response => (this.title = response.data))
     .catch(error => {
       console.log(error)
       this.errored = true
     })
     .finally(() => this.loading = false)
+  },
+  computed: {
+    authors: function () {
+      return this.manga ? this.title.authors : '';
+    },
+    searchType: function()  {
+      return (this.manga) ? 'manga' : 'anime';
+    },
+    manga: function () {
+      return (this.$route.query.manga === 'true') ? true : false;
+    }
   },
   filters: {
     substring: function (value) {
@@ -70,7 +92,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $md-size: 767px;
 $grid-color:  rgba(28, 162, 182, 0.192);
 
@@ -151,6 +173,20 @@ img {
       padding-left: 5px;
     }
   }
+
+  .genres {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    p{
+      margin: 5px 5px;
+      padding: 0 5px;
+      background: $grid-color;
+      font-size: 14px;
+    }
+  }
+
 }
 
 .value {

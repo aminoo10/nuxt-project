@@ -1,6 +1,6 @@
 <template>
     <b-navbar toggleable="lg" type="dark" variant="info">
-    <b-navbar-brand href="#">AMLookup</b-navbar-brand>
+    <b-navbar-brand href="#">AMLookup</b-navbar-brand> <!--tenative name until I come up with something cooler -->
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -19,10 +19,14 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav v-show="show" class="ml-auto">
         <b-nav-form>
-          <b-form-input v-if="checked" size="sm" class="mr-sm-2 searchbar" placeholder="Search Manga"></b-form-input>
-          <b-form-input v-else size="sm" class="mr-sm-2 searchbar" placeholder="Search Anime"></b-form-input>
+      <!-- I couldn't get the search input in the header to tie in well with the search from here, so I'm going to omitt it until I can figure out a good way of implementing it -->
+          <b-form-input v-on:keydown.enter="submit" v-model="query" size="sm" class="mr-sm-2 searchbar" placeholder="Search"></b-form-input>
 
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+            <b-button v-if="!disableButton" size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+
+            <b-button v-else disabled size="sm" class="my-2 my-sm-0" type="submit" title="Your search must have at least three (3) characters">Search</b-button>
+
+
         </b-nav-form>
           <b-form-checkbox v-model="checked" name="check-button" switch class="ml-2">
             <span id="checkbox-color"> Manga search</span>
@@ -38,18 +42,32 @@ export default {
   components: {
   },
   props: {
-    show: Boolean
+    show: Boolean,
+    function: Function,
+    query: String,
   },
   data() {
     return {
-      checked: false,
+      query: '',
       navLinks: [
         {id: 1, urlPath: '/', name: 'Home'},
-        {id: 2, urlPath: '/results', name: 'Results(dev)'},
-        {id: 3, urlPath: '/title', name: 'Title(dev)'}
+        {id: 2, urlPath: '/recommendations', name: 'Recommendations'}
       ]
     }
+  },
+    computed: {
+    disableButton: {
+      get() {
+        return (this.query.length < 3) ? true : false;
+      }
+    }
+  },
+  methods: {
+    submit () {
+      if (this.disableButton == false )  this.function;
+    }
   }
+
 }
 </script>
 

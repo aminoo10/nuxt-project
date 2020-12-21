@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :show= true />
+    <Header :show= false :query="``"/>
     <Nuxt />
   </div>
 </template>
@@ -75,5 +75,17 @@ html {
     background-color: #9e1a1a;
   }
 }
+
+//I wanted to define container here but it kinda broke a bunch of stuff on the 'results' page for some reason, figure I just don't mess with it...
+// .container {
+//   margin: 0 auto;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+// }
+
 
 </style>
