@@ -55,10 +55,17 @@ export default {
     return {
       loading: true,
       title: null,
-      errored: false,
-      mangaID: 2845,
-      animeID: 3272,
-      // manga: this.$route.query.manga,
+      errored: false
+    }
+  },
+    head() {
+    return {
+      title: this.title.title,
+      meta: [
+        {
+          hid: `an individual title listing of series named ${this.title.title}`,
+        }
+       ]
     }
   },
   mounted() {

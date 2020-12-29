@@ -56,6 +56,15 @@ export default {
       query: '',
     }
   },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'Default query and results page',
+        }
+       ]
+    }
+  },
   computed: {
     disableButton: function () {
         return (this.query.length < 3) ? true : false;

@@ -38,6 +38,16 @@ export default {
         {title: 'Chainsaw Man', mal_id: 116778, image_url: 'https://cdn.myanimelist.net/images/manga/3/216464.jpg', description: 'A very short read, but a great read. Similarly to Dorohedoro, lots of influence of from western horror. The expectations and outcomes of this series have made many of my friends anxious and it\'ll always leave you on the edge of your seat. A very quick read only amount to about 100 chapters, highly recommended! An Anime adaption has been announced and is in the works!'}
       ],
     }
+  },
+    head() {
+    return {
+      title: 'Recommendations',
+      meta: [
+        {
+          hid: 'A listing of titles recommended by the webmaster',
+        }
+       ]
+    }
   }
 }
 </script>
