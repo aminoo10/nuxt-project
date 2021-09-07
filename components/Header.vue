@@ -48,7 +48,6 @@ export default {
   },
   data() {
     return {
-      query: '',
       navLinks: [
         {id: 1, urlPath: '/', name: 'Home'},
         {id: 2, urlPath: '/recommendations', name: 'Recommendations'}

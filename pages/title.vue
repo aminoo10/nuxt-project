@@ -73,7 +73,7 @@ export default {
     .get(`https://api.jikan.moe/v3/${this.searchType}/${this.$route.query.id}`)
     .then(response => (this.title = response.data))
     .catch(error => {
-      console.log(error)
+      console.log("some shit went down." + error)
       this.errored = true
     })
     .finally(() => this.loading = false)
