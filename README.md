@@ -1,20 +1,23 @@
 # nuxt-project
 
-## Build Setup
+## AMLookup
 
-```bash
-# install dependencies
-$ yarn install
+A simple Anime/Manga Database Website that queries for Anime or Manga Title listings and displays information about them. 
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+Utilizing the Unofficial MyAnimeList API Jikan (https://jikan.moe/)
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## How to use:
 
-# generate static project
-$ yarn generate
-```
+* Type in 3 characters or less into the search bar, select your desired search-type with the toggle button (Anime or Manga), and surely your results should be populated on the page!
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+* From the results page, view more about a title by clicking on its name, will bring you to a dedicated title page.
+
+* Click the recommendations page to see listing recommendations from the web master!
+
+
+
+## Notes: 
+
+* Sometimes some queries may not be relevant to what was searched, as more listings are returned, the less relevant they will become, this is due part I believe to the nature of the API, but it's not too detrimental of an issue as it still works perfectly fine for searching a specific title. 
+
+* By default, NSFW queries are **filtered out**.
