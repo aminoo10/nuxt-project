@@ -1,5 +1,7 @@
 # nuxt-project
 
+https://kind-hermann-78cd4b.netlify.app/
+
 ## AMLookup
 
 A simple Anime/Manga Database Website that queries for Anime or Manga Title listings and displays information about them. 
