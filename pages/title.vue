@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     axios
-    .get(`https://api.jikan.moe/v3/${this.searchType}/${this.$route.query.id}`)
+    .get(`https://api.jikan.moe/v4/${this.searchType}/${this.$route.query.id}`)
     .then(response => (this.title = response.data))
     .catch(error => {
       console.log("some shit went down." + error)
