@@ -5,7 +5,7 @@
       <b-container v-else>
         <b-row >
           <b-col md="6" class="column-one mb-2">
-            <img :src="title.image_url" >
+            <img :src="title.images.webp.large_image_url" >
           </b-col>
           <b-col class="column-two">
             <h1> {{title.title}} </h1>

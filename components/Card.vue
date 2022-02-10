@@ -1,7 +1,7 @@
 <template>
   <article class="card">
     <div class="card__img">
-      <img :src="item.image_url" :alt="item.title">
+      <img :src="item.images.webp.image_url" :alt="item.title">
     </div>
 
     <div class="card__title">

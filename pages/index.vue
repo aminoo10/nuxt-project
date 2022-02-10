@@ -83,10 +83,10 @@ export default {
     getData() {
       this.loading=true;
       axios
-      //currently, only 48 results will be rendered, until pagination is figured out (lots of results render less relevant ones the more there are anyhow)
+      //currently, only 24 results will be rendered, until pagination is figured out
       //NSFW results are automatically omitted
-    .get(`https://api.jikan.moe/v4/${this.searchType}?q=${this.query}&page=1&sfw&limit=24`)
-    .then(response => (this.results = response.data.results))
+    .get(`https://api.jikan.moe/v4/${this.searchType}?q=${this.query}&page=1&sfw`)
+    .then(response => (this.results = response.data.data))
     .catch(error => { 
       console.log(error)
       this.errored = true
