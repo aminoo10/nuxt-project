@@ -16,10 +16,4 @@ Utilizing the Unofficial MyAnimeList API Jikan (https://jikan.moe/)
 
 * Click the recommendations page to see listing recommendations from the web master!
 
-
-
-## Notes: 
-
-* Sometimes some queries may not be relevant to what was searched, as more listings are returned, the less relevant they will become, this is due part I believe to the nature of the API, but it's not too detrimental of an issue as it still works perfectly fine for searching a specific title. 
-
 * By default, NSFW queries are **filtered out**.
